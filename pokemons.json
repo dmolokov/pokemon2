@@ -1,0 +1,16 @@
+[
+	{"name": "Bulbasaur", "level": 12},
+	{"name": "Ivysaur", "level": 17},
+	{"name": "Venusaur", "level": 22},
+	{"name": "Charmander", "level": 51},
+	{"name": "Charmeleon", "level": 34},
+	{"name": "Charizard", "level": 11},
+	{"name": "Squirtle", "level": 42},
+	{"name": "Wartortle", "level": 21},
+	{"name": "Blastoise", "level": 71},
+	{"name": "Caterpie", "level": 23},
+	{"name": "Metapod", "level": 15},
+	{"name": "Butterfree", "level": 43},
+	{"name": "Weedle", "level": 13},
+	{"name": "Kakuna", "level": 24}
+]
