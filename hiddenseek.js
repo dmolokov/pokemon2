@@ -13,7 +13,7 @@ const hide = (path, pokemonlist) => {
 		list_to_return.push(temp_pokemon);
 		string_to_record = string_to_record + temp_pokemon.format();
 	}
-	fs.writeFile(path + "pokemon.txt", string_to_record, function(err) {
+	fs.writeFile(path + "/pokemon.txt", string_to_record, function(err) {
 		if(err) {
 			return console.log(err);
 		}
@@ -45,7 +45,7 @@ function showFile(file) {
 };
 
 const seek = (path) => {
-	showFile(path + 'pokemon.txt')
+	showFile(path + '/pokemon.txt')
 		.then(processFile)
 		.catch(err => console.log('С файлом что-то не так'));
 };
