@@ -4,8 +4,8 @@ const hs = require('./hiddenseek');
 
 if(process.argv.length < 3) {
 	console.log('Использование команд');
-	console.log('node index hide ./field/XX ./pokemons.json, где XX - название папки');
-	console.log('node index seek ./field/XX, где XX - название папки');
+	console.log('node index hide ./field ./pokemons.json');
+	console.log('node index seek ./field');
 	process.exit(0);
 }
 
@@ -13,7 +13,7 @@ if(process.argv[2] == 'hide') {
 	const fs = require('fs');
 	const Pokemon = require('./pokemon');
 	const PokemonList = require('./pokemonlist');
-	const pokemons = JSON.parse(fs.readFileSync(process.argv[4], "utf8"));
+	const pokemons = require(process.argv[4]);
 	const objects = pokemons.map( obj => new Pokemon(obj.name, obj.level) );
 	const list_of_pokemons = new PokemonList(...objects);
 	

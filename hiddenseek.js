@@ -5,19 +5,23 @@ const Pokemon = require('./pokemon');
 const PokemonList = require('./pokemonlist');                      
 
 const hide = (path, pokemonlist) => {
-	let string_to_record = '';
+	let directories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
 	let list_to_return = new PokemonList();
-	let rand = random(1, (pokemonlist.length < 3) ? pokemonlist.length : 3);
-	for(var i = 0; i < rand; i++) {
-		let temp_pokemon = pokemonlist[random(0, pokemonlist.length - 1)];
+	let rand_number_pokemons = random(1, (pokemonlist.length < 3) ? pokemonlist.length : 3);
+	for(var i = 0; i < rand_number_pokemons; i++) {
+		let temp_pokemon = pokemonlist.splice(random(0, pokemonlist.length - 1), 1)[0];
 		list_to_return.push(temp_pokemon);
-		string_to_record = string_to_record + temp_pokemon.format();
-	}
-	fs.writeFile(path + "/pokemon.txt", string_to_record, function(err) {
-		if(err) {
-			return console.log(err);
+		let full_path = path + '/' + directories.splice(random(0, directories.length - 1), 1)[0];
+		if (!fs.existsSync(full_path)){
+			fs.mkdirSync(full_path);
 		}
-	});
+		fs.writeFile(full_path + "/pokemon.txt", temp_pokemon.format(), ( err ) => {
+			if( err ) {
+					return console.log( err );
+				}
+		});
+	}
+	
 	return list_to_return;
 };
 
@@ -45,9 +49,14 @@ function showFile(file) {
 };
 
 const seek = (path) => {
-	showFile(path + '/pokemon.txt')
-		.then(processFile)
-		.catch(err => console.log('С файлом что-то не так'));
+	let directories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
+	directories.forEach(item => {
+		if (fs.existsSync(path + '/' + item)) {
+			showFile(path + '/' + item + '/pokemon.txt')
+			.then(processFile)
+			.catch(err => console.log('С файлом что-то не так'));
+		}
+	});
 };
 
 function convert_to_array_of_objects(content) {
